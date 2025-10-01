@@ -33,5 +33,31 @@ user_sentence = input("Enter a sentence: ")
 
 while (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
-    user_input = input("Enter a sentence: ")
+    user_sentence = input("Enter a sentence: ")
+
+# Get rid of any punctuation or capitilization 
+user_sentence = user_sentence.lower() 
+accepted_char = "abcdefghijklmnopqrstuvwxyz "
+
+for character in user_sentence:
+    if character not in accepted_char:
+        user_sentence =  user_sentence.replace(character, "")
+
+# Track the number of times each word appears 
+sep_words = user_sentence.split(" ")
+
+words_list = []
+words_count = []
+for word in sep_words: 
+    if word not in words_list: 
+        words_list.append(word)
+        words_count.append(1)
+    else: 
+        count_index = words_list.index(word)
+        words_count[count_index] += 1
+
+# Print each word and its count
+for i in range(len(words_list)):
+    print(f"{words_list[i]}: {words_count[i]}")
+
     
